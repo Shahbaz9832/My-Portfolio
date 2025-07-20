@@ -13,7 +13,7 @@ This is my personal developer portfolio built using **JavaScript**, **Tailwind C
 - HTML, CSS, JavaScript
 - Tailwind CSS
 - GSAP for animations
-- Vite (if used)
+- Vite+React
 
 ## 🌐 Live Demo
 [👉 Click here to view the live site](https://my-portfolio-tau-three-zjc7agqn8u.vercel.app/)
