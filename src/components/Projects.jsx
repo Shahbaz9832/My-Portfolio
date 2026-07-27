@@ -1,15 +1,21 @@
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+
 const projects = [
   {
     title: "Plastecure",
     description:
-      "An AI-powered plastic waste detection platform that uses YOLOv8 and computer vision to identify plastic bottles. The project includes a reward system and demonstrates machine learning deployment with TensorFlow Lite and ESP32-CAM.",
+      "AI-powered plastic waste detection platform using YOLOv8 and OpenCV with TensorFlow Lite deployment on ESP32-CAM.",
+    tech: ["React", "Node.js", "YOLOv8", "OpenCV", "MongoDB"],
+    achievement: "92% Plastic Detection Accuracy",
     demo: "https://plastecure.netlify.app",
     github: "https://github.com/Shahbaz9832/Plastecure",
   },
   {
     title: "AI Interview Preparation Platform",
     description:
-      "A full-stack AI interview preparation platform that enables users to practise interviews, receive AI-generated questions, and improve technical and communication skills through an interactive interface.",
+      "Full-stack interview preparation platform featuring AI-generated questions, authentication, and interactive interview practice.",
+    tech: ["React", "Node.js", "Express", "MongoDB", "AI"],
+    achievement: "Full Stack AI Platform",
     demo: "https://ai-interview-preparation-platform-five.vercel.app",
     github:
       "https://github.com/Shahbaz9832/AI-Interview-Preparation-Platform",
@@ -17,21 +23,27 @@ const projects = [
   {
     title: "iPhone Website Clone",
     description:
-      "A modern 3D Apple iPhone landing page built using React, Tailwind CSS, GSAP, and Three.js with smooth animations and a fully responsive design.",
+      "Modern Apple-inspired landing page built using React, GSAP, Tailwind CSS and Three.js with smooth animations.",
+    tech: ["React", "GSAP", "Tailwind", "Three.js"],
+    achievement: "Responsive 3D UI",
     demo: "https://iphone-website-nu-nine.vercel.app/",
     github: "https://github.com/Shahbaz9832/iphone_website",
   },
   {
     title: "MERN E-Commerce Backend API",
     description:
-      "RESTful backend API for an e-commerce application with JWT authentication, protected routes, product and user management, and MongoDB integration.",
+      "RESTful backend with JWT authentication, product management, protected routes and MongoDB integration.",
+    tech: ["Node.js", "Express", "MongoDB", "JWT"],
+    achievement: "Secure REST APIs",
     github:
       "https://github.com/Shahbaz9832/MERN-Stack-E-Commerce-Backend",
   },
   {
     title: "Note Taking Web Application",
     description:
-      "A React-based note-taking application with CRUD functionality, reusable components, and responsive UI for efficient note management.",
+      "Responsive React application supporting CRUD operations with reusable components and clean UI.",
+    tech: ["React", "JavaScript", "CSS"],
+    achievement: "CRUD Functionality",
     github:
       "https://github.com/Shahbaz9832/Note-Taking-WebApplication1",
   },
@@ -39,44 +51,94 @@ const projects = [
 
 const Projects = () => {
   return (
-    <section id="projects" className="container mx-auto py-12 px-4">
-      <h3 className="text-3xl font-bold text-center mb-10">Projects</h3>
+    <section
+      id="projects"
+      className="bg-slate-50 dark:bg-slate-900 py-20 px-6 transition-colors"
+    >
+      <div className="container mx-auto max-w-7xl">
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project, index) => (
-          <div
-            key={index}
-            className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300"
-          >
-            <h4 className="text-xl font-bold mb-3">{project.title}</h4>
+        {/* Heading */}
+        <div className="text-center mb-14">
+          <h2 className="text-4xl font-bold text-slate-900 dark:text-white">
+            Featured Projects
+          </h2>
 
-            <p className="text-gray-600 dark:text-gray-300 mb-5">
-              {project.description}
-            </p>
+          <p className="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            A selection of projects demonstrating my experience in full-stack
+            development, backend engineering, AI, and modern frontend
+            technologies.
+          </p>
+        </div>
 
-            <div className="flex gap-3 flex-wrap">
-              {project.demo && (
+        {/* Cards */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              className="flex flex-col justify-between bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+            >
+              <div>
+
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+                  {project.title}
+                </h3>
+
+                <p className="text-slate-600 dark:text-slate-300 leading-7 mb-5">
+                  {project.description}
+                </p>
+
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-2 mb-5">
+                  {project.tech.map((item, i) => (
+                    <span
+                      key={i}
+                      className="bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Achievement */}
+                <div className="mb-6">
+                  <span className="text-green-600 dark:text-green-400 font-semibold">
+                    ✓ {project.achievement}
+                  </span>
+                </div>
+
+              </div>
+
+              {/* Buttons */}
+              <div className="flex gap-3 flex-wrap">
+
+                {project.demo && (
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full transition"
+                  >
+                    <FaExternalLinkAlt />
+                    Live Demo
+                  </a>
+                )}
+
                 <a
-                  href={project.demo}
+                  href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
+                  className="flex items-center gap-2 border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-700 px-4 py-2 rounded-full transition"
                 >
-                  Live Demo
+                  <FaGithub />
+                  GitHub
                 </a>
-              )}
 
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-lg"
-              >
-                GitHub
-              </a>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+
+        </div>
       </div>
     </section>
   );
