@@ -11,17 +11,34 @@ const Hero = () => {
   const heroRef = useRef();
 
   useEffect(() => {
-    gsap.fromTo(
-      heroRef.current.children,
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power3.out",
+    const hero = heroRef.current;
+    if (!hero) return;
+
+    let ctx;
+    try {
+      ctx = gsap.context(() => {
+        gsap.fromTo(
+          hero.children,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power3.out",
+          }
+        );
+      }, hero);
+    } catch (error) {
+      console.error("Hero intro animation failed", error);
+      // Never leave the section stuck at opacity 0 if the animation fails.
+      for (const child of hero.children) {
+        child.style.opacity = "1";
+        child.style.transform = "none";
       }
-    );
+    }
+
+    return () => ctx?.revert();
   }, []);
 
   return (
