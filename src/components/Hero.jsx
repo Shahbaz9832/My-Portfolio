@@ -6,6 +6,8 @@ import {
   FaDownload,
   FaArrowRight,
 } from "react-icons/fa";
+import ExternalLink from "./ui/ExternalLink";
+import { GITHUB_URL, LINKEDIN_URL, RESUME_URL } from "../constants/links";
 
 const Hero = () => {
   const heroRef = useRef();
@@ -31,7 +33,6 @@ const Hero = () => {
       className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-black text-white px-6"
     >
       <div className="max-w-5xl mx-auto text-center">
-
         {/* Badge */}
         <div className="inline-flex items-center rounded-full border border-blue-500/40 bg-blue-500/10 px-4 py-2 text-sm text-blue-300 mb-8">
           🚀 Available for Full-Time Opportunities
@@ -39,10 +40,7 @@ const Hero = () => {
 
         {/* Heading */}
         <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
-          Hi, I'm{" "}
-          <span className="text-blue-500">
-            Shahbaz Ansari
-          </span>
+          Hi, I'm <span className="text-blue-500">Shahbaz Ansari</span>
         </h1>
 
         {/* Subtitle */}
@@ -52,16 +50,14 @@ const Hero = () => {
 
         {/* Description */}
         <p className="max-w-3xl mx-auto text-lg text-slate-400 leading-8 mb-10">
-          Final-year Computer Science student passionate about building
-          scalable web applications using React, Node.js, Express.js,
-          MongoDB, JavaScript, and Java. I enjoy creating clean,
-          responsive, and high-performance applications that solve
-          real-world problems.
+          Final-year Computer Science student passionate about building scalable
+          web applications using React, Node.js, Express.js, MongoDB,
+          JavaScript, and Java. I enjoy creating clean, responsive, and
+          high-performance applications that solve real-world problems.
         </p>
 
         {/* Buttons */}
         <div className="flex flex-wrap justify-center gap-5 mb-12">
-
           <a
             href="#projects"
             className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 px-7 py-3 rounded-full font-semibold transition duration-300"
@@ -70,15 +66,13 @@ const Hero = () => {
             <FaArrowRight />
           </a>
 
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+          <ExternalLink
+            href={RESUME_URL}
             className="flex items-center gap-2 border border-slate-600 hover:border-blue-500 hover:bg-slate-800 px-7 py-3 rounded-full font-semibold transition duration-300"
           >
             <FaDownload />
             Resume
-          </a>
+          </ExternalLink>
 
           <a
             href="#contact"
@@ -86,32 +80,24 @@ const Hero = () => {
           >
             Contact Me
           </a>
-
         </div>
 
         {/* Social Icons */}
         <div className="flex justify-center gap-8 text-3xl">
-
-          <a
-            href="https://github.com/Shahbaz9832"
-            target="_blank"
-            rel="noopener noreferrer"
+          <ExternalLink
+            href={GITHUB_URL}
             className="text-slate-400 hover:text-white transition"
           >
             <FaGithub />
-          </a>
+          </ExternalLink>
 
-          <a
-            href="https://www.linkedin.com/in/shahbaz-ansari-469326274/"
-            target="_blank"
-            rel="noopener noreferrer"
+          <ExternalLink
+            href={LINKEDIN_URL}
             className="text-slate-400 hover:text-blue-400 transition"
           >
             <FaLinkedin />
-          </a>
-
+          </ExternalLink>
         </div>
-
       </div>
     </section>
   );
