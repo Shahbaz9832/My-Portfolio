@@ -7,6 +7,7 @@ import Projects from "./components/Projects";
 import Resume from "./components/Resume";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -18,7 +19,9 @@ function App() {
   return (
     <div className="font-sans bg-gray-100 dark:bg-gray-900 dark:text-white transition-colors">
       <Header toggleDarkMode={() => setDarkMode(!darkMode)} darkMode={darkMode} />
-      <Hero />
+      <ErrorBoundary name="Hero">
+        <Hero />
+      </ErrorBoundary>
       <About />
       <Skills />
       <Projects />
