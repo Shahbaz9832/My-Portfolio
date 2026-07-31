@@ -7,6 +7,10 @@ import {
   FaBrain,
   FaLaptopCode,
 } from "react-icons/fa";
+import Card from "./ui/Card";
+import Section from "./ui/Section";
+import SectionHeading from "./ui/SectionHeading";
+import Tag from "./ui/Tag";
 
 const skillCategories = [
   {
@@ -32,25 +36,12 @@ const skillCategories = [
   {
     title: "Tools & Platforms",
     icon: <FaTools />,
-    skills: [
-      "Git",
-      "GitHub",
-      "VS Code",
-      "Vercel",
-      "Netlify",
-      "Google Colab",
-    ],
+    skills: ["Git", "GitHub", "VS Code", "Vercel", "Netlify", "Google Colab"],
   },
   {
     title: "AI & Computer Vision",
     icon: <FaBrain />,
-    skills: [
-      "YOLOv8",
-      "OpenCV",
-      "PyTorch",
-      "TensorFlow Lite",
-      "ESP32-CAM",
-    ],
+    skills: ["YOLOv8", "OpenCV", "PyTorch", "TensorFlow Lite", "ESP32-CAM"],
   },
   {
     title: "Core Computer Science",
@@ -67,65 +58,46 @@ const skillCategories = [
 
 const Skills = () => {
   return (
-    <section
+    <Section
       id="skills"
-      className="bg-slate-50 dark:bg-slate-900 py-20 px-6 transition-colors"
+      className="bg-slate-50 dark:bg-slate-900"
+      containerClassName="max-w-7xl"
     >
-      <div className="container mx-auto max-w-7xl">
+      <SectionHeading
+        title="Technical Skills"
+        subtitle="A collection of technologies, programming languages, frameworks, and tools that I use to build scalable and modern web applications."
+      />
 
-        {/* Heading */}
-        <div className="text-center mb-14">
-          <h2 className="text-4xl font-bold text-slate-900 dark:text-white">
-            Technical Skills
-          </h2>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {skillCategories.map((category, index) => (
+          <Card
+            key={index}
+            className="hover:-translate-y-2 border border-slate-100 dark:border-slate-700"
+          >
+            {/* Title */}
+            <div className="flex items-center gap-3 mb-6">
+              <div className="text-3xl text-blue-600">{category.icon}</div>
 
-          <p className="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            A collection of technologies, programming languages, frameworks,
-            and tools that I use to build scalable and modern web
-            applications.
-          </p>
-        </div>
-
-        {/* Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-          {skillCategories.map((category, index) => (
-            <div
-              key={index}
-              className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 dark:border-slate-700"
-            >
-              {/* Title */}
-              <div className="flex items-center gap-3 mb-6">
-
-                <div className="text-3xl text-blue-600">
-                  {category.icon}
-                </div>
-
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                  {category.title}
-                </h3>
-
-              </div>
-
-              {/* Skills */}
-              <div className="flex flex-wrap gap-3">
-
-                {category.skills.map((skill, i) => (
-                  <span
-                    key={i}
-                    className="bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 px-4 py-2 rounded-full text-sm font-medium hover:scale-105 transition"
-                  >
-                    {skill}
-                  </span>
-                ))}
-
-              </div>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                {category.title}
+              </h3>
             </div>
-          ))}
 
-        </div>
+            {/* Skills */}
+            <div className="flex flex-wrap gap-3">
+              {category.skills.map((skill, i) => (
+                <Tag
+                  key={i}
+                  className="px-4 py-2 text-sm hover:scale-105 transition"
+                >
+                  {skill}
+                </Tag>
+              ))}
+            </div>
+          </Card>
+        ))}
       </div>
-    </section>
+    </Section>
   );
 };
 

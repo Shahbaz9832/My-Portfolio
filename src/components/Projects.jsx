@@ -1,4 +1,9 @@
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import Card from "./ui/Card";
+import ExternalLink from "./ui/ExternalLink";
+import Section from "./ui/Section";
+import SectionHeading from "./ui/SectionHeading";
+import Tag from "./ui/Tag";
 
 const projects = [
   {
@@ -17,8 +22,7 @@ const projects = [
     tech: ["React", "Node.js", "Express", "MongoDB", "AI"],
     achievement: "Full Stack AI Platform",
     demo: "https://ai-interview-preparation-platform-five.vercel.app",
-    github:
-      "https://github.com/Shahbaz9832/AI-Interview-Preparation-Platform",
+    github: "https://github.com/Shahbaz9832/AI-Interview-Preparation-Platform",
   },
   {
     title: "iPhone Website Clone",
@@ -35,8 +39,7 @@ const projects = [
       "RESTful backend with JWT authentication, product management, protected routes and MongoDB integration.",
     tech: ["Node.js", "Express", "MongoDB", "JWT"],
     achievement: "Secure REST APIs",
-    github:
-      "https://github.com/Shahbaz9832/MERN-Stack-E-Commerce-Backend",
+    github: "https://github.com/Shahbaz9832/MERN-Stack-E-Commerce-Backend",
   },
   {
     title: "Note Taking Web Application",
@@ -44,103 +47,78 @@ const projects = [
       "Responsive React application supporting CRUD operations with reusable components and clean UI.",
     tech: ["React", "JavaScript", "CSS"],
     achievement: "CRUD Functionality",
-    github:
-      "https://github.com/Shahbaz9832/Note-Taking-WebApplication1",
+    github: "https://github.com/Shahbaz9832/Note-Taking-WebApplication1",
   },
 ];
 
 const Projects = () => {
   return (
-    <section
+    <Section
       id="projects"
-      className="bg-slate-50 dark:bg-slate-900 py-20 px-6 transition-colors"
+      className="bg-slate-50 dark:bg-slate-900"
+      containerClassName="max-w-7xl"
     >
-      <div className="container mx-auto max-w-7xl">
+      <SectionHeading
+        title="Featured Projects"
+        subtitle="A selection of projects demonstrating my experience in full-stack development, backend engineering, AI, and modern frontend technologies."
+      />
 
-        {/* Heading */}
-        <div className="text-center mb-14">
-          <h2 className="text-4xl font-bold text-slate-900 dark:text-white">
-            Featured Projects
-          </h2>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map((project, index) => (
+          <Card
+            key={index}
+            className="flex flex-col justify-between hover:-translate-y-2"
+          >
+            <div>
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+                {project.title}
+              </h3>
 
-          <p className="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            A selection of projects demonstrating my experience in full-stack
-            development, backend engineering, AI, and modern frontend
-            technologies.
-          </p>
-        </div>
+              <p className="text-slate-600 dark:text-slate-300 leading-7 mb-5">
+                {project.description}
+              </p>
 
-        {/* Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="flex flex-col justify-between bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
-            >
-              <div>
-
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-                  {project.title}
-                </h3>
-
-                <p className="text-slate-600 dark:text-slate-300 leading-7 mb-5">
-                  {project.description}
-                </p>
-
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2 mb-5">
-                  {project.tech.map((item, i) => (
-                    <span
-                      key={i}
-                      className="bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-xs font-medium px-3 py-1 rounded-full"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Achievement */}
-                <div className="mb-6">
-                  <span className="text-green-600 dark:text-green-400 font-semibold">
-                    ✓ {project.achievement}
-                  </span>
-                </div>
-
+              {/* Tech Stack */}
+              <div className="flex flex-wrap gap-2 mb-5">
+                {project.tech.map((item, i) => (
+                  <Tag key={i} className="text-xs px-3 py-1">
+                    {item}
+                  </Tag>
+                ))}
               </div>
 
-              {/* Buttons */}
-              <div className="flex gap-3 flex-wrap">
-
-                {project.demo && (
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full transition"
-                  >
-                    <FaExternalLinkAlt />
-                    Live Demo
-                  </a>
-                )}
-
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-700 px-4 py-2 rounded-full transition"
-                >
-                  <FaGithub />
-                  GitHub
-                </a>
-
+              {/* Achievement */}
+              <div className="mb-6">
+                <span className="text-green-600 dark:text-green-400 font-semibold">
+                  ✓ {project.achievement}
+                </span>
               </div>
             </div>
-          ))}
 
-        </div>
+            {/* Buttons */}
+            <div className="flex gap-3 flex-wrap">
+              {project.demo && (
+                <ExternalLink
+                  href={project.demo}
+                  className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full transition"
+                >
+                  <FaExternalLinkAlt />
+                  Live Demo
+                </ExternalLink>
+              )}
+
+              <ExternalLink
+                href={project.github}
+                className="flex items-center gap-2 border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-700 px-4 py-2 rounded-full transition"
+              >
+                <FaGithub />
+                GitHub
+              </ExternalLink>
+            </div>
+          </Card>
+        ))}
       </div>
-    </section>
+    </Section>
   );
 };
 

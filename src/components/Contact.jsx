@@ -1,107 +1,91 @@
+import { FaEnvelope, FaGithub, FaLinkedin, FaDownload } from "react-icons/fa";
+import ExternalLink from "./ui/ExternalLink";
+import Section from "./ui/Section";
+import SectionHeading from "./ui/SectionHeading";
 import {
-  FaEnvelope,
-  FaGithub,
-  FaLinkedin,
-  FaDownload,
-} from "react-icons/fa";
+  EMAIL,
+  EMAIL_HREF,
+  GITHUB_URL,
+  LINKEDIN_URL,
+  RESUME_URL,
+} from "../constants/links";
+
+const contactCards = [
+  {
+    icon: <FaEnvelope className="text-3xl mb-4" />,
+    title: "Email",
+    description: EMAIL,
+    href: EMAIL_HREF,
+    external: false,
+    descriptionClassName: "text-sm break-all text-slate-300",
+  },
+  {
+    icon: <FaLinkedin className="text-3xl mb-4" />,
+    title: "LinkedIn",
+    description: "Connect with me",
+    href: LINKEDIN_URL,
+  },
+  {
+    icon: <FaGithub className="text-3xl mb-4" />,
+    title: "GitHub",
+    description: "View my repositories",
+    href: GITHUB_URL,
+  },
+  {
+    icon: <FaDownload className="text-3xl mb-4" />,
+    title: "Resume",
+    description: "Download PDF",
+    href: RESUME_URL,
+  },
+];
+
+const cardClassName =
+  "bg-slate-800 rounded-2xl p-6 hover:bg-blue-600 transition duration-300";
 
 const Contact = () => {
   return (
-    <section
+    <Section
       id="contact"
-      className="bg-slate-900 text-white py-20 px-6"
+      className="bg-slate-900 text-white"
+      containerClassName="max-w-6xl"
     >
-      <div className="container mx-auto max-w-6xl">
+      <SectionHeading
+        title="Let's Build Something Amazing"
+        subtitle="I'm currently looking for Software Engineer, Full Stack Developer, Backend Developer, and Java Developer opportunities. If you'd like to discuss a project or opportunity, feel free to connect."
+        titleClassName=""
+        subtitleClassName="max-w-2xl text-slate-300"
+      />
 
-        {/* Heading */}
-        <div className="text-center mb-14">
-          <h2 className="text-4xl font-bold mb-4">
-            Let's Build Something Amazing
-          </h2>
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {contactCards.map((card) => {
+          const content = (
+            <>
+              {card.icon}
 
-          <p className="text-slate-300 max-w-2xl mx-auto">
-            I'm currently looking for Software Engineer, Full Stack Developer,
-            Backend Developer, and Java Developer opportunities. If you'd like
-            to discuss a project or opportunity, feel free to connect.
-          </p>
-        </div>
+              <h3 className="text-xl font-semibold mb-2">{card.title}</h3>
 
-        {/* Contact Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <p className={card.descriptionClassName ?? "text-slate-300"}>
+                {card.description}
+              </p>
+            </>
+          );
 
-          {/* Email */}
-          <a
-            href="mailto:shahbazansari6464141@gmail.com"
-            className="bg-slate-800 rounded-2xl p-6 hover:bg-blue-600 transition duration-300"
-          >
-            <FaEnvelope className="text-3xl mb-4" />
-
-            <h3 className="text-xl font-semibold mb-2">
-              Email
-            </h3>
-
-            <p className="text-sm break-all text-slate-300">
-              shahbazansari6464141@gmail.com
-            </p>
-          </a>
-
-          {/* LinkedIn */}
-          <a
-            href="https://www.linkedin.com/in/shahbaz-ansari-469326274/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-slate-800 rounded-2xl p-6 hover:bg-blue-600 transition duration-300"
-          >
-            <FaLinkedin className="text-3xl mb-4" />
-
-            <h3 className="text-xl font-semibold mb-2">
-              LinkedIn
-            </h3>
-
-            <p className="text-slate-300">
-              Connect with me
-            </p>
-          </a>
-
-          {/* GitHub */}
-          <a
-            href="https://github.com/Shahbaz9832"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-slate-800 rounded-2xl p-6 hover:bg-blue-600 transition duration-300"
-          >
-            <FaGithub className="text-3xl mb-4" />
-
-            <h3 className="text-xl font-semibold mb-2">
-              GitHub
-            </h3>
-
-            <p className="text-slate-300">
-              View my repositories
-            </p>
-          </a>
-
-          {/* Resume */}
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-slate-800 rounded-2xl p-6 hover:bg-blue-600 transition duration-300"
-          >
-            <FaDownload className="text-3xl mb-4" />
-
-            <h3 className="text-xl font-semibold mb-2">
-              Resume
-            </h3>
-
-            <p className="text-slate-300">
-              Download PDF
-            </p>
-          </a>
-
-        </div>
+          return card.external === false ? (
+            <a key={card.title} href={card.href} className={cardClassName}>
+              {content}
+            </a>
+          ) : (
+            <ExternalLink
+              key={card.title}
+              href={card.href}
+              className={cardClassName}
+            >
+              {content}
+            </ExternalLink>
+          );
+        })}
       </div>
-    </section>
+    </Section>
   );
 };
 
